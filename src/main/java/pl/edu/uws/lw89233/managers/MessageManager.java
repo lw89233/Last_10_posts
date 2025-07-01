@@ -25,10 +25,6 @@ public final class MessageManager {
     }
 
     public String getAttribute(String key) {
-        if (requestDict.containsKey(key)) {
-            return requestDict.get(key);
-        } else {
-            return null;
-        }
+        return requestDict.getOrDefault(key, null);
     }
 }

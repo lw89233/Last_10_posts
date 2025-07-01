@@ -7,14 +7,14 @@ import java.util.Properties;
 
 public final class EnvManager {
 
-    private static final Properties properties = loadEnvVariablesFromFile(".env");
+    private static final Properties properties = loadEnvVariablesFromFile();
 
     private EnvManager() {
     }
 
-    private static Properties loadEnvVariablesFromFile(String envFilePath) {
+    private static Properties loadEnvVariablesFromFile() {
         Properties props = new Properties();
-        try (InputStream envFile = new FileInputStream(envFilePath)) {
+        try (InputStream envFile = new FileInputStream(".env")) {
             props.load(envFile);
         } catch (IOException e) {
             System.err.println("Błąd przy ładowaniu pliku konfiguracyjnego: " + e.getMessage());
