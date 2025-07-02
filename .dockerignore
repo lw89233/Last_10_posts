@@ -1,0 +1,25 @@
+# Ignore directories and files created by Maven
+target/
+
+# Ignore IDE-specific directories and files
+.idea/
+*.iml
+*.iws
+
+# Ignore log and local settings files
+*.log
+
+# Ignore configuration files with environment variables
+.env
+.env.*
+
+# Ignore the Git repository directory
+.git/
+
+# Ignore files created by the operating system
+.DS_Store
+
+# Ignore files related to docker configuration
+Dockerfile
+docker-compose.yml
+.dockerignore

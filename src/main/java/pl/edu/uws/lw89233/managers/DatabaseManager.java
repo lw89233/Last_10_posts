@@ -20,16 +20,39 @@ public final class DatabaseManager {
         this.DB_USER = DB_USER;
         this.DB_PASSWORD = DB_PASSWORD;
 
-        connect();
+        connectWithRetries();
     }
 
-    public void connect() {
+    public void connectWithRetries() {
         String DB_URL = "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME;
-        try {
-            this.dbConnection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-        } catch (SQLException e) {
-            System.err.println("Błąd przy połączeniu z bazą danych: " + e.getMessage());
+        int maxRetries = 5;
+        int retryCount = 0;
+
+        while (retryCount < maxRetries) {
+            try {
+
+                this.dbConnection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+
+                System.out.println("Pomyślnie połączono z bazą danych: " + DB_NAME);
+                return;
+
+            } catch (SQLException e) {
+
+                retryCount++;
+                System.err.println("Błąd przy połączeniu z bazą danych (próba " + retryCount + "/" + maxRetries + "): " + e.getMessage());
+
+                if (retryCount < maxRetries) {
+                    try {
+
+                        Thread.sleep(5000);
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+            }
         }
+
+        System.err.println("Nie udało się nawiązać połączenia z bazą danych po " + maxRetries + " próbach.");
     }
 
     public Connection getConnection() {

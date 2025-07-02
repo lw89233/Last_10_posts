@@ -1,7 +1,6 @@
 package pl.edu.uws.lw89233;
 
 import pl.edu.uws.lw89233.managers.DatabaseManager;
-import pl.edu.uws.lw89233.managers.EnvManager;
 import pl.edu.uws.lw89233.managers.MessageManager;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,14 +12,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Last_10_post_Microservice {
+public class Last_10_posts {
 
-    private final int PORT = Integer.parseInt(EnvManager.getEnvVariable("LAST_10_POSTS_MICROSERVICE_PORT"));
-    private final String DB_HOST = EnvManager.getEnvVariable("DB_HOST");
-    private final String DB_PORT = EnvManager.getEnvVariable("DB_PORT");
-    private final String DB_NAME = EnvManager.getEnvVariable("DB_NAME");
-    private final String DB_USER = EnvManager.getEnvVariable("DB_USER");
-    private final String DB_PASSWORD = EnvManager.getEnvVariable("DB_PASSWORD");
+    private final int PORT = Integer.parseInt(System.getenv("LAST_10_POSTS_MICROSERVICE_PORT"));
+    private final String DB_HOST = System.getenv("DB_HOST");
+    private final String DB_PORT = System.getenv("DB_PORT");
+    private final String DB_NAME = System.getenv("DB_NAME");
+    private final String DB_USER = System.getenv("DB_USER");
+    private final String DB_PASSWORD = System.getenv("DB_PASSWORD");
     private final DatabaseManager dbManager = new DatabaseManager(DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD);
 
     public void startService() {
@@ -94,6 +93,6 @@ public class Last_10_post_Microservice {
     }
 
     public static void main(String[] args) {
-        new Last_10_post_Microservice().startService();
+        new Last_10_posts().startService();
     }
 }

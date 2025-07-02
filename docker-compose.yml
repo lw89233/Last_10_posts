@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  last-10-posts:
+    build: .
+    image: last-10-posts:latest
+    container_name: last-10-posts-service
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${LAST_10_POSTS_MICROSERVICE_PORT}:${LAST_10_POSTS_MICROSERVICE_PORT}"
