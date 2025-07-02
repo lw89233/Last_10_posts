@@ -24,7 +24,20 @@ DB_USER=
 
 DB_PASSWORD=
 
+## Wymagania
+
+Do poprawnego działania tego komponentu wymagane jest uruchomienie i skonfigurowanie następujących usług:
+
+* **Baza Danych MySQL**: Aplikacja łączy się z bazą danych w celu przechowywania informacji. Dane do połączenia należy umieścić w pliku `.env`.
 
 ## Uruchomienie
 
-Serwis można uruchomić, wykonując główną metodę `main` w klasie `Last_10_posts.java`
+Uruchomienie aplikacji odbywa się przy użyciu Dockera.
+
+1.  **Sklonuj repozytorium**
+2.  **Skonfiguruj zmienne środowiskowe**: Utwórz plik `.env` w głównym katalogu projektu i uzupełnij go o wymagane wartości (możesz skorzystać z `.env.sample`).
+3.  **Uruchom aplikację**: W głównym katalogu projektu wykonaj polecenie:
+    ```bash
+    docker-compose up --build
+    ```
+    Spowoduje to zbudowanie obrazu Docker i uruchomienie kontenera z aplikacją.
