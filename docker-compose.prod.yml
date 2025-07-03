@@ -1,7 +1,6 @@
 services:
   last-10-posts:
-    build: .
-    image: last-10-posts:latest
+    image: lw89233/last_10_posts:latest
     container_name: last-10-posts-service
     restart: unless-stopped
     env_file:
